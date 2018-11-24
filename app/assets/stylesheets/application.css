@@ -1,9 +1,9 @@
-/*
+                /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
  *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
@@ -12,4 +12,65 @@
  *
  *= require_tree .
  *= require_self
+ *= require bootstrap-datepicker
+ *= require s3_direct_upload_progress_bars
  */
+                
+ .top_search .input-group-btn .search {
+    border-radius: 0 25px 25px 0;
+    border: 1px solid rgba(221, 226, 232, .49);
+    border-left: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    color: #93A2B2;
+    margin-bottom: 0!important;
+}
+
+.event {
+    color: #e7e7e7;
+    width: 97%;
+    margin-bottom: 3px;
+    padding: 2px;
+    font-weight: 500;
+}
+
+.appointments-table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 310px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.appointments-table td {
+    border: solid 1px #888787;
+    width: 100px;
+    word-wrap: break-word;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.appointments-table-header td {
+    background-color: #93A2B2;
+    color: #fff;
+}
+
+.appointments-table-time {
+    background-color: #93A2B2;
+    color: #fff;
+}
+
+.appointments-table-content {
+    background-color: rgba(8, 117, 108, 0.16);
+}
+
+.appointments-table-content p {
+    color: #5a5757;
+}
+
+.flash_message {
+    font-weight: 600;
+    color: #6ead6e;
+    position: absolute;
+    padding-left: 25px;
+    padding-top: 15px;
+}
