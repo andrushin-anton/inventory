@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       if @user.update(allowed_params)
-        format.html { redirect_to redirect_to_back, notice: 'Password was successfully updated.' }
+        format.html { redirect_back fallback_location: root_path, notice: 'Password was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :password }
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update(allowed_params)
-        format.html { redirect_to redirect_to_back, notice: 'User was successfully updated.' }
+        format.html { redirect_back fallback_location: root_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     @user.status = 'ACTIVE'
     @user.save
     respond_to do |format|
-      format.html { redirect_to redirect_to_back, notice: 'User was successfully activated.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'User was successfully activated.' }
       format.json { head :no_content }
     end
   end
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
     @user.status = 'DELETED'
     @user.save
     respond_to do |format|
-      format.html { redirect_to redirect_to_back, notice: 'User was successfully disabled.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'User was successfully disabled.' }
       format.json { head :no_content }
     end
   end

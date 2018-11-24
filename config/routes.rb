@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'users/password/:id', to: 'users#password', as: 'password'
+  patch 'users/update_password/:id', to: 'users#update_password', as: 'update_password'
 
   root 'inventory#index'
 end

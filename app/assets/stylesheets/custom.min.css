@@ -450,7 +450,8 @@ body .container.body .right_col {
     float: left;
     background: #2679cc;
     border-radius: 0;
-    height: 57px
+    height: 57px;
+    text-align: center;
 }
 
 @media (max-width:991px) {
@@ -984,7 +985,6 @@ a:visited {
     height: 65px;
     margin: 0;
     padding-top: 10px;
-    padding-left: 10px;
 }
 
 .nav.navbar-nav>li>a {
@@ -3999,7 +3999,7 @@ ul.project_files li a i {
 }
 
 .login {
-    background: #cbf9df;
+    background: #efefef;
 }
 
 .login .fa-paw {

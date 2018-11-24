@@ -31,6 +31,8 @@ gem 's3_direct_upload'
 
 gem 'bootstrap-datepicker-rails'
 
+gem 'access-granted', '~> 1.1.0'
+
 # Pagination
 gem 'kaminari', :git => "git://github.com/amatsuda/kaminari.git", :branch => 'master'
 
