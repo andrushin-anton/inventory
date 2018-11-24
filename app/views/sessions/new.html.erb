@@ -1,0 +1,35 @@
+<div>
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}", class: 'alert alert-info' %>
+      <% end %>
+        <section class="login_content">
+          <%= form_tag sessions_path do %>
+            <h1>Login Form</h1>
+            <div>
+              <%= text_field_tag :email, params[:email], :class => 'form-control', :placeholder => 'Username' %>
+            </div>
+            <div>
+              <%= password_field_tag :password, nil, :class => 'form-control', :placeholder => 'Password' %>
+            </div>
+            <div>
+              <%= submit_tag "Log In", :class => "btn btn-default submit" %>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <div class="clearfix"></div>
+              <br>
+
+              <div>
+                <h1>Northern Windows & Doors</h1>
+                <p>©2018 All Rights Reserved.</p>
+              </div>
+            </div>
+          <% end %>
+        </section>
+      </div>
+    </div>
+  </div>
