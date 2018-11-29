@@ -38,9 +38,13 @@ class AccessPolicy
     # end
 
     role :admin, proc { |user| user.role == 'admin' } do
-      can [
-        :index, :create, :new, :show, :edit, :update, :destroy, :update_password, :password, :activate
-      ], User
+      can [:index, :create, :new, :show, :edit, :update, :destroy, :update_password, :password, :activate, :staff, :staff_create, :staff_update, :staff_show, :staff_new, :staff_edit], User
+      can [:index], Inventory
+      can [:new, :create, :show, :update, :edit, :destroy], Item
+    end
+
+    role :user, proc { |user| user.role == 'user' } do
+      can [:index], Inventory
     end
 
   end
