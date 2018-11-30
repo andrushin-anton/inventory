@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: MyString
+  description: MyString
+  item_id: 1
+  quantity: 1
+
+two:
+  author: MyString
+  description: MyString
+  item_id: 1
+  quantity: 1

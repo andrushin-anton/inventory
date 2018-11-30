@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   patch 'users/update_password/:id', to: 'users#update_password', as: 'update_password'
   patch 'users/activate/:id', to: 'users#activate', as: 'user_activate'
 
+  post 'item_history/:id', to: 'item#item_history_create', as: 'item_history'
+
   root 'inventory#index'
 end

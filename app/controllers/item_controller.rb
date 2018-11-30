@@ -12,6 +12,8 @@ class ItemController < ApplicationController
 
     def edit
         authorize! :edit, @item
+
+        @item_history = ItemHistory.where(item_id: @item.id).order(created_at: :desc).page(params[:page])
     end
 
     def create
@@ -22,6 +24,29 @@ class ItemController < ApplicationController
         respond_to do |format|
             if @item.save
             format.html { redirect_to root_path, notice: "#{@item.name} was successfully created!" }
+            format.json { render :show, status: :created, location: @item }
+            else
+            format.html { render :new }
+            format.json { render json: @item.errors, status: :unprocessable_entity }
+            end
+        end
+    end
+
+    def item_history_create
+        authorize! :create, Item
+
+        @item_history = ItemHistory.new(allowed_history_params)
+        @item_history.author = current_user.first_name + current_user.last_name
+        @item_history.item_id = params[:id]
+
+        respond_to do |format|
+            if @item_history.save
+            
+            item = Item.find(params[:id])
+            item.quantity = item.quantity + @item_history.quantity
+            item.save
+
+            format.html { redirect_back fallback_location: root_path, notice: "Quantity was successfully updated!" }
             format.json { render :show, status: :created, location: @item }
             else
             format.html { render :new }
@@ -64,6 +89,10 @@ class ItemController < ApplicationController
         # Never trust parameters from the scary internet, only allow the white list through.
         def allowed_params
             params.require(:item).permit(:name, :price, :description)
+        end
+
+        def allowed_history_params
+            params.require(:item_history).permit(:quantity, :description)
         end
 
 end

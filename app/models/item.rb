@@ -9,6 +9,7 @@ class Item < ApplicationRecord
     private
         def default_values
             self.status ||= :active
+            self.quantity ||= 0
         end
 
 end
