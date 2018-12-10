@@ -41,6 +41,7 @@ class AccessPolicy
       can [:index, :create, :new, :show, :edit, :update, :destroy, :update_password, :password, :activate, :staff, :staff_create, :staff_update, :staff_show, :staff_new, :staff_edit], User
       can [:index], Inventory
       can [:new, :create, :show, :update, :edit, :destroy], Item
+      can [:index, :new, :create, :show, :update, :edit, :destroy], Order
     end
 
     role :user, proc { |user| user.role == 'user' } do

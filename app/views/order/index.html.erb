@@ -1,0 +1,38 @@
+<div class="page-title">
+    <h3 style="text-align: center">Orders</h3>
+  
+    <div class="col-md-6 col-sm-6 col-xs-12" style="width:100%">
+        <div class="x_panel">
+        <div class="x_title">
+            <button type="button" class="btn btn-primary btn-circle btn-lg" onclick="location.href = '<%= new_order_path%>';"><i class="glyphicon glyphicon-plus"></i></button>
+        <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Delivery Time</th>
+                <th>#Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @orders.each do |order| %>
+            <tr>
+                <th scope="row"><%= order.pid %></th>
+                <td><%= order.customer %></td>
+                <td><%= order.status %></td>
+                <td><%= order.delivery_time %></td>
+                <td><%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_order_path(order), :class => 'btn btn-info btn-xs' %></td>
+            </tr>
+            <% end %>
+            </tbody>
+        </table>
+
+        <%= paginate @orders, :left => 1, :right => 3 %>
+
+        </div>
+    </div>
+</div>

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :staff
   resources :users
   resources :item
+  resources :order
 
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
@@ -14,5 +15,6 @@ Rails.application.routes.draw do
 
   post 'item_history/:id', to: 'item#item_history_create', as: 'item_history'
 
-  root 'inventory#index'
+  get 'inventory', to: 'inventory#index', as: 'inventory'
+  root 'order#index'
 end
