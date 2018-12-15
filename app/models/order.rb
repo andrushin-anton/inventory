@@ -22,6 +22,6 @@ class Order < ApplicationRecord
     private
         def default_values
             self.status ||= :waiting
-            self.delivery_time = DateTime.now
+            self.delivery_time ||= DateTime.now
         end
 end

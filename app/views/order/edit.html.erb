@@ -8,6 +8,7 @@
     </ul>-->
     <div class="clearfix"></div>
   </div>
+
   <div class="x_content">
     <%= form_for @order, :html => {:class => 'form-horizontal form-label-left input_mask'} do |f| %>
     <% if @order.errors.any? %>
@@ -43,6 +44,13 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Delivery Time</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <%= f.text_field :delivery_time, :class => 'datepicker-order form-control', :value => @order.delivery_time.to_formatted_s(:short) %>
+        </div>
+      </div>
+
       <div class="ln_solid"></div>
       <div class="form-group">
         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -56,7 +64,42 @@
 </div>
 
 <!-- Add order Item(Custom) -->
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Custom Items</h2>
+    
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
 
+    <div class="row">
+
+    <form action="<%=order_custom_item_path(@order.id)%>" method="POST">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+        <input type="number" name="custom_item[quantity]" placeholder="Quantity" class="form-control" required>
+      </div>
+
+      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+        <input type="number" name="custom_item[price]" placeholder="Price" class="form-control" step="0.01" required>
+      </div>
+
+      <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+        <input type="text" name="custom_item[item_name]" placeholder="Name" class="form-control">
+      </div>
+
+      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+        <input type="text" name="custom_item[delivery_time]" class="datepicker-add-custom-item form-control" placeholder="Delivery Time" required>
+      </div>
+
+      <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+        <button type="submit" class="btn btn-success">Add!</button>
+      </div>
+    </form>
+    </div>
+
+  </div>
+</div>
 
 <!-- Order details -->
 <div class="x_panel">

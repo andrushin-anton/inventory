@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   patch 'users/activate/:id', to: 'users#activate', as: 'user_activate'
 
   post 'item_history/:id', to: 'item#item_history_create', as: 'item_history'
+  post 'order_custom_item/:id', to: 'order#order_custom_item_create', as: 'order_custom_item'
 
   get 'order/add_item/:id/:item_id', to: 'order#order_item_add', as: 'order_item_add'
   get 'order/remove_item/:id/:item_id', to: 'order#order_item_remove', as: 'order_item_remove'

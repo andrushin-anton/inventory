@@ -26,7 +26,7 @@
                 <th scope="row"><%= order.pid %></th>
                 <td><%= truncate(order.customer, :length => 20, :omission => '...') %></td>
                 <td><label class="btn btn-xs" style="<%= order.color%>"><%= order.status %></label></td>
-                <td><%= order.delivery_time %></td>
+                <td><%= order.delivery_time.to_formatted_s(:short) %></td>
                 <td>
                 <% if can? :edit, Order %>
                 <%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_order_path(order), :class => 'btn btn-info btn-xs' %>

@@ -19,7 +19,14 @@
 //= require s3_direct_upload
 
 $(document).on('turbolinks:load', function() {
-    
+    $('.datepicker-add-custom-item').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+    });
+    $('.datepicker-order').datepicker({
+        autoclose: true,
+        format: 'yyyy-mm-dd'
+    });
 });
 
 
