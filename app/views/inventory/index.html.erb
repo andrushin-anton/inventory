@@ -23,10 +23,10 @@
             <% @items.each do |item| %>
             <tr>
                 <th scope="row"><%= item.id %></th>
-                <td><%= item.name %></td>
+                <td><%= truncate(item.name, :length => 20, :omission => '...') %></td>
                 <td><%= item.price %></td>
                 <td><%= item.quantity %></td>
-                <td><%= truncate(item.description, :length => 10, :omission => '...') %></td>
+                <td><%= truncate(item.description, :length => 20, :omission => '...') %></td>
                 <td><%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_item_path(item), :class => 'btn btn-info btn-xs' %></td>
             </tr>
             <% end %>

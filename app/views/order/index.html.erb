@@ -3,10 +3,12 @@
   
     <div class="col-md-6 col-sm-6 col-xs-12" style="width:100%">
         <div class="x_panel">
+        <% if can? :new, Order %>
         <div class="x_title">
             <button type="button" class="btn btn-primary btn-circle btn-lg" onclick="location.href = '<%= new_order_path%>';"><i class="glyphicon glyphicon-plus"></i></button>
-        <div class="clearfix"></div>
+            <div class="clearfix"></div>
         </div>
+        <% end %>
         <div class="x_content">
         <table class="table table-hover">
             <thead>
@@ -15,17 +17,23 @@
                 <th>Customer</th>
                 <th>Status</th>
                 <th>Delivery Time</th>
-                <th>#Edit</th>
+                <th>#Action</th>
             </tr>
             </thead>
             <tbody>
             <% @orders.each do |order| %>
             <tr>
                 <th scope="row"><%= order.pid %></th>
-                <td><%= order.customer %></td>
-                <td><%= order.status %></td>
+                <td><%= truncate(order.customer, :length => 20, :omission => '...') %></td>
+                <td><label class="btn btn-xs" style="<%= order.color%>"><%= order.status %></label></td>
                 <td><%= order.delivery_time %></td>
-                <td><%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_order_path(order), :class => 'btn btn-info btn-xs' %></td>
+                <td>
+                <% if can? :edit, Order %>
+                <%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_order_path(order), :class => 'btn btn-info btn-xs' %>
+                <% end %>
+                <%= link_to '<i class="fa"></i> Details'.html_safe, order_path(order), :class => 'btn btn-info btn-xs' %>
+                </td>
+                
             </tr>
             <% end %>
             </tbody>

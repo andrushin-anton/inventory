@@ -1,0 +1,135 @@
+<!-- Order form -->
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Updating <%= @order.pid%></h2>
+    <!--<ul class="nav navbar-right panel_toolbox">
+      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+      </li>
+    </ul>-->
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <%= form_for @order, :html => {:class => 'form-horizontal form-label-left input_mask'} do |f| %>
+    <% if @order.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@order.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+        <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Purchase order number</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <%= f.text_field :pid, :class => 'form-control', :value => @order.pid %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Customer</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <%= f.text_field :customer, :class => 'form-control', :value => @order.customer %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <%= f.select :status, Order.statuses, {:selected => @order.status.to_sym}, {:class => 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="ln_solid"></div>
+      <div class="form-group">
+        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+          <%= link_to 'Cancel', :back, :class => 'btn btn-primary' %>
+          <%= f.submit 'Submit', :class => 'btn btn-success' %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+<!-- Add order Item(Custom) -->
+
+
+<!-- Order details -->
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Order Details</h2>
+    
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>#Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @order_items.each do |item| %>
+            <tr>
+                <td><%= truncate(item.item_name, :length => 20, :omission => '...') %></td>
+                <td><%= item.price %></td>
+                <td><%= item.quantity %></td>
+                <td><%= link_to '<i class="fa fa-trash-o"></i> Remove'.html_safe, order_item_remove_path(@order.id, item.item_id), :class => 'btn btn-danger btn-xs',  method: :get, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+            <% end %>
+            <tr style="background-color:#ededed;">
+                <td><label class="">TOTAL:</label></td>
+                <td><%= order_total(@order_items)%></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+  </div>
+</div>
+
+<!-- Inventory -->
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Inventory</h2>
+    
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Description</th>
+                <th>#Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @items.each do |item| %>
+            <tr>
+                <td><%= truncate(item.name, :length => 20, :omission => '...') %></td>
+                <td><%= item.price %></td>
+                <td><%= item.quantity %></td>
+                <td><%= truncate(item.description, :length => 20, :omission => '...') %></td>
+                <td><%= add_to_order_btn(@order, item)%></td>
+            </tr>
+            <% end %>
+            </tbody>
+        </table>
+
+        <%= paginate @items, :left => 1, :right => 3 %>
+
+  </div>
+</div>
+
+
+

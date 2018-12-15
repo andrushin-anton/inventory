@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   post 'item_history/:id', to: 'item#item_history_create', as: 'item_history'
 
+  get 'order/add_item/:id/:item_id', to: 'order#order_item_add', as: 'order_item_add'
+  get 'order/remove_item/:id/:item_id', to: 'order#order_item_remove', as: 'order_item_remove'
   get 'inventory', to: 'inventory#index', as: 'inventory'
   root 'order#index'
 end

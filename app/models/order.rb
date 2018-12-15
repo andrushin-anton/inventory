@@ -6,21 +6,22 @@ class Order < ApplicationRecord
         {waiting: :waiting, inproduction: :inproduction, readyforpickup: :readyforpickup, pickedup: :pickedup}
     end
 
-    def self.color
-        case self.status 
+    def color
+        case self.status.to_sym 
         when :waiting
-            return 'red'
+            return 'background-color:red; color:white'
         when :inproduction
-            return 'blue'
+            return 'background-color:blue; color:white'
         when :readyforpickup
-            return 'yellow'
+            return 'background-color:yellow; color:black'
         when :pickedup
-            return 'green'
+            return 'background-color:green; color:white'
         end
     end
 
     private
         def default_values
             self.status ||= :waiting
+            self.delivery_time = DateTime.now
         end
 end

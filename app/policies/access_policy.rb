@@ -45,7 +45,7 @@ class AccessPolicy
     end
 
     role :user, proc { |user| user.role == 'user' } do
-      can [:index], Inventory
+      can [:index, :show], Order
     end
 
   end

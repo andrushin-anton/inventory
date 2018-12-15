@@ -34,8 +34,10 @@
                 
                     <ul class="nav child_menu" style="display: block;">
                   
-                      <li class="<%= 'current-page' if params[:controller] == 'orders' %>"><a href="<%= root_path%>">Orders</a></li>
+                      <li class="<%= 'current-page' if params[:controller] == 'order' %>"><a href="<%= root_path%>">Orders</a></li>
+                      <% if can? :index, Inventory %>
                       <li class="<%= 'current-page' if params[:controller] == 'inventory' || params[:controller] == 'item' %>"><a href="<%= inventory_path%>">Inventory</a></li>
+                      <% end %>
                       <% if can? :index, User %>
                       <li class="<%= 'current-page' if params[:controller] == 'staff' %>"><a href="<%= staff_index_path%>">Staff</a></li>
                       <% end %>
@@ -70,8 +72,10 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     
-                    <li class="<%= 'current-page' if params[:controller] == 'orders' %>"><a href="<%= root_path%>">Orders</a></li>
+                    <li class="<%= 'current-page' if params[:controller] == 'order' %>"><a href="<%= root_path%>">Orders</a></li>
+                    <% if can? :index, Inventory %>
                     <li class="<%= 'current-page' if params[:controller] == 'inventory' %>"><a href="<%= inventory_path%>">Inventory</a></li>
+                    <% end %>
                     <% if can? :index, User %>
                     <li class="<%= 'current-page' if params[:controller] == 'staff' %>"><a href="<%= staff_index_path%>">Staff</a></li>
                     <% end %>
